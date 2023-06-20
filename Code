@@ -1,0 +1,36 @@
+import random
+
+def hangman():
+    words = ['python', 'java', 'ruby', 'javascript', 'html', 'css']
+    word = random.choice(words)
+    guesses = ''
+    turns = 6
+
+    print("Hangman Game!")
+    print("Guess the letters of the word.")
+
+    while turns > 0:
+        missed = 0
+
+        for char in word:
+            if char in guesses:
+                print(char, end=' ')
+            else:
+                print('_', end=' ')
+                missed += 1
+
+        if missed == 0:
+            print("\nCongratulations! You won!")
+            break
+
+        guess = input("\nTake a guess: ")
+        guesses += guess
+
+        if guess not in word:
+            turns -= 1
+            print(f"Wrong guess! You have {turns} turns left.")
+
+        if turns == 0:
+            print("Sorry, you lost. The word was:", word)
+
+hangman()
